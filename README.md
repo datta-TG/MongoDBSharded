@@ -9,7 +9,7 @@ If you have a Lite account, you can upgrade it. Click [here](https://cloud.ibm.c
 
 * Click on the search section at the top of the main page, type Kubernetes, and then choose Kubernetes Service.
 
-![Screenshot](Kubernetes1.png)
+![Screenshot](Kubernetes1.PNG)
 
 * In the new window, select between the free and standard type under "Pricing plan". Once selected, click on create.
 
