@@ -92,7 +92,7 @@ The following checkmark and the word 'normal' will appear once the Kubernetes Cl
 
 ![Screenshot](mongo1.PNG)
 
-* A new window opens, select the cluster and enter the name you want for the Redis workspace or select an exist workspace, in this case, we'll create a new one and it will be called _redis-example_, accept the terms and click on *Install*. You can modify the different installation parameters at the bottom. We will leave them by default as shown below, but you can read more about setting up the parameters [here](https://cloud.ibm.com/catalog/content/Redis#about "here").
+* A new window opens, select the cluster and enter the name you want for the Redis workspace or select an exist workspace, in this case, we'll create a new one and it will be called _mongodb-sharded_, accept the terms and click on *Install*. You can modify the different installation parameters at the bottom. We will leave them by default as shown below, but you can read more about setting up the parameters [here](https://cloud.ibm.com/catalog/content/mongodb-sharded-Qml0bmFtaS1tb25nb2RiLXNoYXJkZWQ=-global#about "here").
 
 ![Screenshot](mongo2.PNG)
 
@@ -113,7 +113,7 @@ The following checkmark and the word 'normal' will appear once the Kubernetes Cl
 
 ![Screenshot](test7.PNG)
 
-* Once you have installed the terminal, open it, select web terminal, and type the following command. It will show you the workspaces of your cluster. You can see *redis-example* is now active.
+* Once you have installed the terminal, open it, select web terminal, and type the following command. It will show you the workspaces of your cluster. You can see *mongodb-sharded* is now active.
 
 `$ kubectl get ns`
 
