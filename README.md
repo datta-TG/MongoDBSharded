@@ -96,6 +96,11 @@ The following checkmark and the word 'normal' will appear once the Kubernetes Cl
 
 ![Screenshot](mongo2.PNG)
 
+* You can modify the different installation parameters at the bottom. We will leave them by default except for the root password, which you will need to access your MongoDD console and work with your databases.
+
+Make sure you set up a password in the _mongodbRootPassword_ variable. 
+
+![Screenshot](mongo3.PNG)
 
 ## Step 4: Verify Installation
 
