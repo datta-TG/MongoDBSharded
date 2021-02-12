@@ -26,11 +26,10 @@ We'll choose the Standard Plan for this documentation as the Free Plan may fall 
 
 ![Screenshot](KubernetesPaid2.PNG)
 
-* Select the number of workers in Worker Pool.
+* Select the number of workers in Worker Pool. In our case, we'll set it to three (3) as Mongodb-sharded requires it. 
 * Give your Worker Pool a name.
 * Leave the Encrypt Local Disk option 'On'
-* Choose 'Both private and public endpoints' on Master Service Endpoint
-* Select the number of workers in Worker Pool. In our case, we'll set it to three (3) as Mongodb-sharded requires it. 
+* Choose 'Both private and public endpoints' on Master Service Endpoint.
 
 ![Screenshot](KubernetesPaid4.PNG)
 
@@ -119,7 +118,7 @@ The following checkmark and the word 'normal' will appear once the Kubernetes Cl
 
 ![Screenshot](mongo2.PNG)
 
-* You can modify the different installation parameters at the bottom. We will leave them by default except for the root password, which you will need to access your MongoDD console and work with your databases.
+* You can modify the different installation parameters at the bottom. We will leave them by default except for the root password, which you will need to access your MongoDB console and work with your databases.
 
 Make sure you set up a password in the _mongodbRootPassword_ variable. 
 
@@ -147,7 +146,7 @@ Make sure you set up a password in the _mongodbRootPassword_ variable.
 
 `$ kubectl exec --stdin --tty PODNAME -n NAMESPACE -- /bin/bash`
 
-* Check if MongoDB Sharded is correctly installed by checking the server version.
+* Check if MongoDB Sharded is correctly installed by checking the server version or using any of the MongoDB commands.
 
 ` mongod --version `
 
