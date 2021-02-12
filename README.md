@@ -30,6 +30,7 @@ We'll choose the Standard Plan for this documentation as the Free Plan may fall 
 * Give your Worker Pool a name.
 * Leave the Encrypt Local Disk option 'On'
 * Choose 'Both private and public endpoints' on Master Service Endpoint
+* Select the number of workers in Worker Pool. In our case, we'll set it to three (3) as Mongodb-sharded requires it. 
 
 ![Screenshot](KubernetesPaid4.PNG)
 
@@ -57,52 +58,7 @@ The following checkmark and the word 'normal' will appear once the Kubernetes Cl
 
 ![Screenshot](StoragePaid2.PNG)
 
-* To install MongoDB it is necessary to check that our storage class is in block storage gold class. To verify that storage classs is in default we use the following command. 
-
-`$ kubectl get storageclass`
-
-![Screenshot](teststorage1.PNG)
-
-*In our example, the storage class default is in ibm-file-gold, to Mark the default StorageClass as non-default:
-
-`$ kubectl patch storageclass ibm-file-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'`
-
-![Screenshot](teststorage2.PNG)
-
-* Check the change made 
-
-`$ kubectl get storageclass`
-
-![Screenshot](teststorage3.PNG)
-
-* Now, mark a block-gold storage as default
-
-`$ kubectl patch storageclass ibmc-block-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'`
-
-![Screenshot](teststorage4.PNG)
-
-`$ kubectl get storageclass`
-
-![Screenshot](teststorage5.PNG)
-
-
-## Step 3: Install MongoDB Sharded
-
-* Click on the search section at the top of the main page, type Redis, and click on _Redis Packaged by Bitnami_.
-
-![Screenshot](mongo1.PNG)
-
-* A new window opens, select the cluster and enter the name you want for the Redis workspace or select an exist workspace, in this case, we'll create a new one and it will be called _mongodb-sharded_, accept the terms and click on *Install*. You can modify the different installation parameters at the bottom. We will leave them by default as shown below, but you can read more about setting up the parameters [here](https://cloud.ibm.com/catalog/content/mongodb-sharded-Qml0bmFtaS1tb25nb2RiLXNoYXJkZWQ=-global#about "here").
-
-![Screenshot](mongo2.PNG)
-
-* You can modify the different installation parameters at the bottom. We will leave them by default except for the root password, which you will need to access your MongoDD console and work with your databases.
-
-Make sure you set up a password in the _mongodbRootPassword_ variable. 
-
-![Screenshot](mongo3.PNG)
-
-## Step 4: Verify Installation
+## Step 3: Verify Installation of Cloud Block Storage plug-in and configuration
 
 * Go to *Resources List* in the Left Navigation Menu and click on *Kubernetes*.
 
@@ -118,7 +74,60 @@ Make sure you set up a password in the _mongodbRootPassword_ variable.
 
 ![Screenshot](test7.PNG)
 
-* Once you have installed the terminal, open it, select web terminal, and type the following command. It will show you the workspaces of your cluster. You can see *mongodb-sharded* is now active.
+* Once you have installed the terminal, open it, select web terminal, and type the following command. It will show you the workspaces of your cluster. You can see *storage-example* is now active.
+
+`$ kubectl get ns`
+
+![Screenshot](teststorage6.PNG)
+
+* To install MongoDB it is necessary to check that our storage class is in the block storage gold class by default. To verify that the storage class is in default we use the following command. Also, you can follow IBM tutorial on how to change the default class storage [here](https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/ "here"). 
+
+`$ kubectl get storageclass`
+
+![Screenshot](teststorage1.PNG)
+
+* In our example, the storage class is by default in IBM-file-gold, we should change that to the IBM-block-gold to make mongodb-sharded work. To do this we first remove the IBM-file-gold as the default class storage by following this command:
+
+`$ kubectl patch storageclass ibm-file-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'`
+
+![Screenshot](teststorage2.PNG)
+
+* Check the change is correctly applied. 
+
+`$ kubectl get storageclass`
+
+![Screenshot](teststorage3.PNG)
+
+* Now, mark the IBM-block-gold storage as default by inputting the following command.
+
+`$ kubectl patch storageclass ibmc-block-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'`
+
+![Screenshot](teststorage4.PNG)
+
+`$ kubectl get storageclass`
+
+![Screenshot](teststorage5.PNG)
+
+
+## Step 4: Install MongoDB Sharded
+
+* Click on the search section at the top of the main page, type Redis, and click on _MongoDB(R) Sharded packaged by Bitnami_.
+
+![Screenshot](mongo1.PNG)
+
+* A new window opens, select the cluster and enter the name you want for the Redis workspace or select an exist workspace, in this case, we'll create a new one and it will be called _mongodb-sharded_, accept the terms and click on *Install*. You can modify the different installation parameters at the bottom. We will leave them by default as shown below, but you can read more about setting up the parameters [here](https://cloud.ibm.com/catalog/content/mongodb-sharded-Qml0bmFtaS1tb25nb2RiLXNoYXJkZWQ=-global#about "here").
+
+![Screenshot](mongo2.PNG)
+
+* You can modify the different installation parameters at the bottom. We will leave them by default except for the root password, which you will need to access your MongoDD console and work with your databases.
+
+Make sure you set up a password in the _mongodbRootPassword_ variable. 
+
+![Screenshot](mongo3.PNG)
+
+## Step 4: Verify Installation MongoDB Sharded
+
+* Open the web terminal and type the following command. You can see *mongodb-sharded* is now active.
 
 `$ kubectl get ns`
 
