@@ -85,7 +85,7 @@ The following checkmark and the word 'normal' will appear once the Kubernetes Cl
 
 ![Screenshot](teststorage1.PNG)
 
-* In our example, the storage class is by default in IBM-file-gold, we should change that to the IBM-block-gold to make mongodb-sharded work. To do this we first remove the IBM-file-gold as the default class storage by following this command:
+* In our example, the storage class is by default in IBM-file-gold, we will change that to the IBM-block-gold to make mongodb-sharded work. To do this, we first remove the IBM-file-gold as the default class storage by following this command:
 
 `$ kubectl patch storageclass ibm-file-gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'`
 
